@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Lexend';
+    src: url('../fonts/Lexend-Medium.woff') format('woff2'),
+        url('../fonts/Lexend-Medium.woff2') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dino</title>
+    <link rel="stylesheet" href="./css/reset.css">
+</head>
+<style>
+    .container {
+        margin: 0 auto;
+        padding: 0 15px;
+        height: 100%;
+        background: #d600ff;
+    }
+
+    #game {
+        margin-top: 7px;
+        height: 500px;
+        border: 1px solid #000;
+        background: url(/img/game/field.jpg) 100% 70%/ cover no-repeat;
+        background-color: var(--accent-color);
+    }
+
+    #dino {
+        width: 50px;
+        height: 50px;
+        position: relative;
+        top: 75%;
+    }
+
+    #dino img {
+        max-width: 110px;
+    }
+
+    #cactus {
+        position: relative;
+        top: 64%;
+        background: url("/img/game/cactus2.png") 50px 50px / cover no-repeat;
+        animation: cactus 1s infinite linear;
+        left: 580px;
+    }
+
+    #cactus img {
+        max-width: 250px;
+    }
+
+    .jump {
+        animation: jump 0.4s infinite linear;
+    }
+    .back img {
+        max-width: 250px;
+        max-height: 170px;
+    }
+
+    @keyframes jump {
+        0% {
+            top: 377px;
+        }
+
+        30% {
+            top: 200px;
+        }
+
+        70% {
+            top: 255px;
+        }
+
+        100% {
+            top: 300px;
+        }
+    }
+
+    @keyframes cactus {
+        0% {
+            left: 100%;
+        }
+
+        100% {
+            left: -20%;
+        }
+    }
+</style>
+
+<body>
+    <div class="container">
+            <a href="index.html" class="back">
+                <img src="./img/my__logo.jpg" alt="">
+            </a>
+        <div id="game" style="cursor: pointer;">
+            <div id="dino">
+                <img src="/img/game/dino.svg" alt="">
+            </div>
+            <div id="cactus">
+                <img src="/img/game/cactus2.png" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const dino = document.getElementById('dino');
+    const cactus = document.getElementById('cactus');
+
+    document.addEventListener('keydown', function (event) {
+        jump();
+    });
+
+    function jump() {
+        if (dino.classList != 'jump') {
+            dino.classList.add('jump');
+            setTimeout(function () {
+                dino.classList.remove('jump');
+            }, 300);
+        }
+    }
+    let isAlive = setInterval(function () {
+        let dinoTop = parseInt(window.getComputedStyle(dino).getPropertyValue('top'))
+        let cactusLeft = parseInt(window.getComputedStyle(cactus).getPropertyValue('left'))
+
+        if (cactusLeft < 50 && cactusLeft > 0 && dinoTop >= 300) {
+            alert('GameOver')
+        }
+    }, 10)
+</script>
+
+</html>
